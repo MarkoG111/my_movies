@@ -6,10 +6,10 @@ import { MovieGrid } from '../components/MovieGrid';
 import { LoadingState } from '../components/LoadingState';
 import { ErrorState } from '../components/ErrorState';
 
-export default function ToWatchPage() {
-    const { movies, loading, error, toggleStatus, removeMovie } = useMovies('toWatch');
+export default function WatchedPage() {
+    const { movies, loading, error, toggleStatus, removeMovie } = useMovies('watched');
     const [showFilters, setShowFilters] = useState(false);
-
+    
     const {
         searchQuery,
         setSearchQuery,

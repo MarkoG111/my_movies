@@ -1,7 +1,6 @@
 import { useState, useMemo } from 'react';
 
 export function useMovieFilters(movies) {
-    const [activeTab, setActiveTab] = useState('toWatch');
     const [searchQuery, setSearchQuery] = useState('');
     const [selectedGenre, setSelectedGenre] = useState('all');
     const [sortBy, setSortBy] = useState('title');
@@ -18,7 +17,6 @@ export function useMovieFilters(movies) {
 
     const filteredMovies = useMemo(() => {
         return movies
-            .filter(m => m.status === activeTab)
             .filter(m => m.title.toLowerCase().includes(searchQuery.toLowerCase()))
             .filter(m => selectedGenre === 'all' || (m.genres && m.genres.includes(selectedGenre)))
             .sort((a, b) => {
@@ -27,11 +25,9 @@ export function useMovieFilters(movies) {
                 if (sortBy === 'rating') return parseFloat(b.rating) - parseFloat(a.rating);
                 return 0;
             });
-    }, [movies, activeTab, searchQuery, selectedGenre, sortBy]);
+    }, [movies, searchQuery, selectedGenre, sortBy]);
 
     return {
-        activeTab,
-        setActiveTab,
         searchQuery,
         setSearchQuery,
         selectedGenre,

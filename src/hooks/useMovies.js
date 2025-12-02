@@ -1,14 +1,18 @@
 import { useState, useEffect } from 'react';
-import { getToWatchIds } from '../services/moviesService';
+import { getToWatchIds, getWatchedIds } from '../services/moviesService';
 import { getMovieDetails } from '../api/tmdb';
 
-export function useMovies() {
+export function useMovies(type) {
     const [movies, setMovies] = useState([]);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const ids = getToWatchIds().slice(0, 20);
+        const ids = type === "watched"
+            ? getWatchedIds().slice(0, 20)
+            : getToWatchIds().slice(0, 20);
+
+        console.log(ids);
 
         Promise.all(ids.map(id => getMovieDetails(id)))
             .then(moviesData => {
@@ -22,8 +26,9 @@ export function useMovies() {
                     poster: movie.poster_path
                         ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
                         : null,
-                    status: 'toWatch'
+                    status: type
                 }));
+
                 setMovies(formattedMovies);
                 setLoading(false);
             })
@@ -31,7 +36,7 @@ export function useMovies() {
                 setError(err.message);
                 setLoading(false);
             });
-    }, []);
+    }, [type]);
 
     const toggleStatus = (id) => {
         setMovies(movies.map(m =>

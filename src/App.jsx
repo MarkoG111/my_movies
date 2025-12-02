@@ -1,4 +1,3 @@
-import './App.css'
 import ToWatchPage from './pages/ToWatchPage'
 
 function App() {

@@ -1,24 +1,32 @@
 import { useMovieDetails } from "../hooks/useMovieDetails";
 import MovieCard from "../components/MovieCard";
+import React from "react";
 
-export default function MovieItem({ movie, onToggleStatus, onRemove }) {
-    const details = useMovieDetails(movie.imdbId);
+const MovieItem = React.memo(({ movie, onToggleStatus, onRemove }) => {
+    const { details, elementRef } = useMovieDetails(movie.imdbId);
 
-    if (!details) {
-        return <div className="h-[300px] bg-slate-500 rounded-xl animate-pulse"></div>;
-    }
-
-    const fullMovie = {
-        ...details,
-        status: movie.status,
-        addedAt: movie.addedAt,
-    };
+    const fullMovie = details
+        ? {
+            ...details,
+            status: movie.status,
+            addedAt: movie.addedAt,
+        }
+        : null;
 
     return (
-        <MovieCard
-            movie={fullMovie}
-            onToggleStatus={onToggleStatus}
-            onRemove={onRemove}
-        />
+        <div ref={elementRef}>
+            {fullMovie ? (
+                <MovieCard
+                    movie={fullMovie}
+                    onToggleStatus={onToggleStatus}
+                    onRemove={onRemove}
+                />
+            ) : (
+                <div className="w-full h-full bg-slate-500 rounded-xl animate-pulse"></div>
+            )}
+        </div>
     );
-}
+});
+
+export default MovieItem;
+

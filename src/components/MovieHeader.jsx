@@ -21,7 +21,7 @@ export default function MovieHeader({
     return (
         <header
             className="
-                sticky top-0 z-40 
+                top-0 z-40 
                 bg-[#0d0d0f]/95 backdrop-blur-xl
                 border-b border-[#1f1f22]
                 shadow-[0_2px_20px_-5px_rgba(0,0,0,0.6)]

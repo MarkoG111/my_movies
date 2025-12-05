@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useCallback } from "react";
 import {
     loadMovies,
     addMovie as serviceAddMovie,
@@ -7,12 +7,9 @@ import {
 } from "../services/moviesService";
 
 export function useMovies() {
-    const [movies, setMovies] = useState([]);
-
-    // Učitaj sve filmove na mount
-    useEffect(() => {
-        setMovies(loadMovies());
-    }, []);
+    const [movies, setMovies] = useState(() => {
+        return loadMovies();
+    });
 
     const addMovie = useCallback((imdbId, status = "toWatch") => {
         const updated = serviceAddMovie(imdbId, status);

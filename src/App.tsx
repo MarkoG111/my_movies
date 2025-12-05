@@ -1,7 +1,7 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import ToWatchPage from './pages/ToWatchPage'
-import WatchedPage from './pages/WatchedPage'
+import ToWatchPage from "./pages/ToWatchPage";
+import WatchedPage from "./pages/WatchedPage";
 
 function App() {
   return (
@@ -15,4 +15,4 @@ function App() {
   );
 }
 
-export default App
+export default App;

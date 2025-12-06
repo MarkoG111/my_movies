@@ -4,7 +4,7 @@ export interface MovieDetails {
   // Basic info
   title: string;
   year: number;
-  rating: number; 
+  rating: number;
   runtime: number;
 
   // Media
@@ -25,8 +25,25 @@ export interface MovieDetails {
 
   // Credits
   director?: string | null;
-  cast?: string[];
+  cast?: string[]; // actor names
 
   // Gallery
-  images?: string[];
+  images?: string[]; // image URLs
+
+  // Extras
+  videos?: MovieVideo[];
+  reviews?: MovieReview[];
+}
+
+export interface MovieVideo {
+  key: string; // YouTube key, etc.
+  name: string;
+  site: string; // "YouTube"
+  type: string; // "Trailer", "Teaser", etc.
+}
+
+export interface MovieReview {
+  author: string;
+  content: string;
+  url: string;
 }

@@ -7,5 +7,4 @@ export interface Movie {
   rating: number;
   poster: string;
   status: "toWatch" | "watched";
-  addedAt: string;
 }

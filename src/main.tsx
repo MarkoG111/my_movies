@@ -3,6 +3,7 @@ import { createRoot } from "react-dom/client";
 import App from "./App";
 import "./index.css";
 import { MoviesProvider } from "./context/MoviesContext";
+import { TMDBProvider } from "./context/TMDBContext";
 
 // Find the root container in index.html
 const rootElement = document.getElementById("root");
@@ -13,7 +14,9 @@ const root = createRoot(rootElement);
 root.render(
   <React.StrictMode>
     <MoviesProvider>
-      <App />
+      <TMDBProvider>
+        <App />
+      </TMDBProvider>
     </MoviesProvider>
   </React.StrictMode>
 );

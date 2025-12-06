@@ -7,30 +7,49 @@ import {
   Star,
 } from "lucide-react";
 import { useEffect, useState } from "react";
-import { getFakeMovieDetails } from "../data/fakeMovieDetails";
 import { useNavigate, useParams } from "react-router-dom";
 import { MovieDetails } from "../types/MovieDetails";
+import { useTMDB } from "../context/TMDBContext";
 
 export default function MovieDetailsPage() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
 
+  const { getDetails } = useTMDB();
+
   const [details, setDetails] = useState<MovieDetails | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (!id) return;
+    if (!id) {
+      return;
+    }
+
+    let isMounted = true;
 
     setLoading(true);
 
-    // TEMPORARY — fake fetch
-    const data = getFakeMovieDetails(id);
-    setDetails(data);
-    setLoading(false);
+    getDetails(id)
+      .then((data) => {
+        if (!isMounted) {
+          return;
+        }
+        
+        setDetails(data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error(err);
 
-    // LATER: real TMDB:
-    // fetchMovieDetails(id).then(setDetails).finally(() => setLoading(false));
-  }, [id]);
+        if (isMounted) {
+          setLoading(false);
+        }
+      });
+
+    return () => {
+      isMounted = false;
+    };
+  }, [id, getDetails]);
 
   if (loading) {
     return (

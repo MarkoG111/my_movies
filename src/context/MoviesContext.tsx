@@ -1,8 +1,11 @@
-import React, { createContext, useContext, useState, ReactNode } from "react";
+import { createContext, useContext, useState, ReactNode } from "react";
+
+import toWatchData from "../data/toWatchFull.json";
+import watchedData from "../data/watchedFull.json";
+
+import { MovieBase } from "../types/MovieBase";
 import { Movie } from "../types/Movie";
 
-import toWatchIds from "../data/toWatch.json";
-import watchedIds from "../data/watched.json";
 interface MoviesProviderProps {
   children: ReactNode;
 }
@@ -11,7 +14,6 @@ interface MoviesContextValue {
   movies: Movie[];
   toWatchMovies: Movie[];
   watchedMovies: Movie[];
-
   moveToWatched: (id: string) => void;
   moveToToWatch: (id: string) => void;
   removeMovie: (id: string) => void;
@@ -20,24 +22,11 @@ interface MoviesContextValue {
 const MoviesContext = createContext<MoviesContextValue | undefined>(undefined);
 
 export function MoviesProvider({ children }: MoviesProviderProps) {
-  // Convert IMDb IDs -> minimal Movie objects
-  const createMovie = (imdbId: string, status: Movie["status"]): Movie => ({
-    imdbId,
-    title: `Loading… (${imdbId})`,
-    year: 0,
-    runtime: 0,
-    poster: "",
-    genres: [],
-    rating: 0,
-    status,
-  });
-
   const [toWatchMovies, setToWatchMovies] = useState<Movie[]>(
-    toWatchIds.map((id) => createMovie(id, "toWatch"))
+    toWatchData.map((m: MovieBase) => ({ ...m, status: "toWatch" }))
   );
-
   const [watchedMovies, setWatchedMovies] = useState<Movie[]>(
-    watchedIds.map((id) => createMovie(id, "watched"))
+    watchedData.map((m: MovieBase) => ({ ...m, status: "watched" }))
   );
 
   const allMovies = [...toWatchMovies, ...watchedMovies];

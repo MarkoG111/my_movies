@@ -15,11 +15,11 @@ const root = createRoot(rootElement);
 root.render(
     <React.StrictMode>
         <AuthProvider>
-            <MoviesProvider>
-                <TMDBProvider>
+            <TMDBProvider>
+                <MoviesProvider>
                     <App />
-                </TMDBProvider>
-            </MoviesProvider>
+                </MoviesProvider>
+            </TMDBProvider>
         </AuthProvider>
     </React.StrictMode>
 );

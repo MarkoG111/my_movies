@@ -5,7 +5,10 @@
     "type": "module",
     "scripts": {
         "dev": "vite",
-        "prefetch": "node scripts/prefetchMovies.js",
+        "prefetch": "node scripts/prefetchMovies.mjs",
+        "migrate": "node scripts/migrateToSupabase.mjs",
+        "dict": "node scripts/buildMovieDict.mjs",
+        "rebuild-dict": "node scripts/rebuildMoviesDict.mjs",
         "build": "npm run prefetch && vite build",
         "lint": "eslint .",
         "preview": "vite preview"

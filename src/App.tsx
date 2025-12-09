@@ -4,9 +4,6 @@ import ToWatchPage from "./pages/ToWatchPage";
 import WatchedPage from "./pages/WatchedPage";
 import MovieDetailsPage from "./pages/MovieDetailsPage";
 
-import Signup from "./pages/SignupPage";
-import Login from "./pages/LoginPage";
-
 import { AuthProvider } from "./context/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoute";
 import AuthPages from "./components/layout/AuthPages";

@@ -3116,19 +3116,7 @@
             "Drama"
         ]
     },
-    {
-        "imdbId": "tt0314331",
-        "title": "Love Actually",
-        "year": 2003,
-        "rating": 7.1,
-        "runtime": 135,
-        "poster": "https://image.tmdb.org/t/p/original/7QPeVsr9rcFU9Gl90yg0gTOTpVv.jpg",
-        "genres": [
-            "Comedy",
-            "Romance",
-            "Drama"
-        ]
-    },
+
     {
         "imdbId": "tt0114814",
         "title": "The Usual Suspects",
@@ -4902,17 +4890,6 @@
             "Thriller",
             "Drama",
             "Crime"
-        ]
-    },
-    {
-        "imdbId": "tt0056801",
-        "title": "8½",
-        "year": 1963,
-        "rating": 8.1,
-        "runtime": 139,
-        "poster": "https://image.tmdb.org/t/p/original/d7wXtJ173oHtoCwxbe7Z5uXZ4Gv.jpg",
-        "genres": [
-            "Drama"
         ]
     },
     {
